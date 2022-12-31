@@ -1,14 +1,16 @@
 const express = require("express")
 const router = express.Router()
-const postController = require("../cntrls/postcntlr")
+const postController = require("../controllers/postController")
+const { isAuth } = require("../middlewares")
 
 
-router.get("/", postController.getALlPosts)
-router.post("/", postController.createPost)
-router.put("/:id", postController.updatePost)
-router.get("/:id", postController.getSinglePost)
-router.delete("/:id", postController.deletePost)
-//router.get("/deletePost", postController.getDeletePostx)
+router.get("/", isAuth,postController.getALlPosts)
+router.post("/",isAuth, postController.createPost)
+router.put("/:id",isAuth, postController.updatePost)
+// router.get("/:id",isAuth, postController.getSinglePost)
+router.delete("/:id",isAuth, postController.deletePost)
+router.get("/myposts", isAuth, postController.getMyPost)
+//router.get("/deletePost", isAuth ,postController.getDeletePost)
 
 
 
