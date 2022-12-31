@@ -3,7 +3,7 @@ const thinksyria = require("../db");
 const createUser = (req, res) => {
   const name = req.body.name;
   const password = req.body.password;
-  const passwordConfirmation = req.body.password_confirmation;
+  const password_confirmation = req.body.password_confirmation;
   const email = req.body.email;
 
   if (name?.length < 3)
@@ -32,7 +32,7 @@ const createUser = (req, res) => {
       data: []
     });
 
-  if (password.localeCompare(passwordConfirmation))
+  if (password.localeCompare(password_confirmation))
     return res.send({
       sucess: false,
       meg: "password and  passwordConfirmation are not  matched !",

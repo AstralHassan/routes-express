@@ -83,7 +83,7 @@ const getMyPost = (req, res) => {
       meg: "login first ",
       data: []
     });
-  db.query(`SELECT * FROM post WHERE userId='${userId}' AND deletedAT is NULL`, (err, result) => {
+  db.query(`SELECT * FROM post WHERE userId='${userId}' AND deletedAT IS NULL`, (err, result) => {
     if (result.length > 0)
       return res.send({
         success: true,

@@ -4,7 +4,7 @@ const postController = require("../controllers/postController")
 const { isAuth } = require("../middlewares")
 
 
-router.get("/", isAuth,postController.getALlPosts)
+router.get("/", postController.getALlPosts)
 router.post("/",isAuth, postController.createPost)
 router.put("/:id",isAuth, postController.updatePost)
 // router.get("/:id",isAuth, postController.getSinglePost)

@@ -10,10 +10,34 @@ const getcomments = (req, res) => {
 }
 
 const createcomment = (req, res) => {
+    const { content } = req.body;
+    if (content.length > 10) {
+      data.push({
+        id: data.length + 1,
+        content,
+        deletedAt: null
+      });
+      return res.send({
+        success: true,
+        msg: "comment is created !",
+        data: data[data.length - 1]
+      });
+    }
+    return res.send({
+      success: false,
+      msg: "content is less than 10 chars",
+      data: []
+    });
 
-    db.query('INSERT INTO comments SET ?', req.body, (err, result) => {
+}
+
+const deletecommenta = (req , res) => {
+
+    const commentid = req.params.id
+
+    db.query(`DELETE FROM comments WHERE id = ${commentid}`, (err, result) => {
         if (err) throw err;
-        res.send({ id: result.insertId, ...req.body });
+        res.send(result);
       });
 
 }
@@ -22,8 +46,11 @@ const createcomment = (req, res) => {
 
 
 
+
 module.exports = {
     getcomments,
-    createcomment
+    createcomment,
+    deletecommenta,
+    
 
 }
