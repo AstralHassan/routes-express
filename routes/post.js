@@ -5,11 +5,11 @@ const { isAuth } = require("../middlewares")
 
 
 router.get("/", postController.getALlPosts)
-router.post("/",isAuth, postController.createPost)
+router.post("/", postController.createPost)
 router.put("/:id",isAuth, postController.updatePost)
-// router.get("/:id",isAuth, postController.getSinglePost)
+router.get("/:id", postController.getSinglePost)
 router.delete("/:id",isAuth, postController.deletePost)
-router.get("/myposts", isAuth, postController.getMyPost)
+router.get("/:userId", isAuth, postController.getMyPost)
 //router.get("/deletePost", isAuth ,postController.getDeletePost)
 
 
